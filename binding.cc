@@ -55,7 +55,7 @@ public:
     Nan::SetPrototypeMethod(t, "decode", Decode);
 
     //problem #1
-    Nan::Set(target, Nan::New<String>("Decoder").ToLocalChecked(),  Nan::GetFunction(t).ToLocalChecked());
+    Nan::Set(target, Nan::New<String>("Decoder").ToLocalChecked(), t->GetFunction());
   }
 
   virtual
