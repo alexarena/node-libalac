@@ -76,7 +76,7 @@ private:
     Decoder *d = new Decoder();
 
     // Fill parameters.
-    v = o->Get(Nan::New<String>(cookie_symbol));
+    v = Nan::New<String>(cookie_symbol);
     d->channels_= 2;//o->Get(Nan::New<String>(channels_symbol))->Uint32Value();
     d->frames_ = 352; //o->Get(Nan::New<String>(frames_per_packet_symbol))->Uint32Value();
 
