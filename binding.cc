@@ -7,12 +7,12 @@
 #include <node_buffer.h>
 #include <ALACBitUtilities.h>
 #include <ALACDecoder.h>
+#include <iostream>
 
 using namespace v8;
 using namespace node;
 
 namespace alac {
-
 
 static Nan::Persistent<String> frames_per_packet_symbol;
 static Nan::Persistent<String> sample_rate_symbol;
@@ -49,6 +49,11 @@ public:
   static void
   Initialize(Local<Object> target)
   {
+
+
+    std::cout << "hello world12";
+
+
     Local<FunctionTemplate> t = Nan::New<FunctionTemplate>(New);
     t->InstanceTemplate()->SetInternalFieldCount(1);
 
@@ -70,15 +75,23 @@ private:
   {
     Nan::HandleScope scope;
 
+    Isolate* isolate = info.GetIsolate();
+    Local<Context> context = isolate->GetCurrentContext();
+
     Local<Object> o = Local<Object>::Cast(info[0]);
     Local<Value> v;
 
     Decoder *d = new Decoder();
 
     // Fill parameters.
-    v = Nan::New<String>(cookie_symbol);
+    // v = o->Get(context,Nan::New<String>(cookie_symbol));
+    // v = o->Get(Nan::New<String>(cookie_symbol));
     d->channels_= 2;//o->Get(Nan::New<String>(channels_symbol))->Uint32Value();
     d->frames_ = 352; //o->Get(Nan::New<String>(frames_per_packet_symbol))->Uint32Value();
+
+    // std::cout << o->Get(channels_symbol);
+    std::cout << "\n";
+    std::cout << "SUP";
 
     // Init decoder.
     int32_t ret = d->dec_.Init(Buffer::Data(v), Buffer::Length(v));
