@@ -50,10 +50,6 @@ public:
   Initialize(Local<Object> target)
   {
 
-
-    // std::cout << "hello world12";
-
-
     Local<FunctionTemplate> t = Nan::New<FunctionTemplate>(New);
     t->InstanceTemplate()->SetInternalFieldCount(1);
 
